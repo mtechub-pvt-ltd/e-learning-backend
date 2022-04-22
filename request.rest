@@ -1,0 +1,274 @@
+###
+POST http://localhost:3000/email-otp
+Content-Type: application/json
+
+{
+    "email":"zouqe42@gmail.com"
+}
+###
+POST http://localhost:3000/create-playlist
+Content-Type: application/json
+
+{
+    "name":"Some New Playlist",
+    "description": "Some Description for the playlist",
+    "videos":[
+        "video-uploads\\1650349203820.mp4",
+        "video-uploads\\1650349203820.mp4",
+        "video-uploads\\1650349203820.mp4"
+    ],
+    "images":[
+        "image-uploads\\1650349172242.png",
+        "image-uploads\\1650349172242.png",
+        "image-uploads\\1650349172242.png"
+    ],
+    "topic":"625fe49d5a6636a5b9afde08"
+}
+###
+POST http://localhost:3000/create-topic
+Content-Type: application/json
+
+{
+    "name":"Some New Topic",
+    "description": "Some Description for the topic",
+    "images":[
+        "image-uploads\\1650349172242.png",
+        "image-uploads\\1650349172242.png",
+        "image-uploads\\1650349172242.png"
+    ],
+    "price":"500"
+}
+
+###
+GET http://localhost:3000/get-all-topics 
+###
+GET http://localhost:3000/get-topic?_id=625e55db14ba331cd79ef7a4
+###
+PUT http://localhost:3000/update-topic
+Content-Type: application/json
+
+{
+    "_id":"625e55db14ba331cd79ef7a4",
+    "name":"Personal Topic",
+    "description": "Some Description for the topic",
+    "images":[
+        "image-uploads\\1650349172242.png",
+        "image-uploads\\1650349172242.png",
+        "image-uploads\\1650349172242.png"
+    ],
+    "price":"450"
+}
+###
+DELETE http://localhost:3000/delete-topic
+Content-Type: application/json
+
+{
+    "_id":"625e55db14ba331cd79ef7a4"
+}
+###
+DELETE http://localhost:3000/delete-playlist
+Content-Type: application/json
+
+{
+    "_id":"625e57073b0aaabe618629bb"
+}
+###
+GET http://localhost:3000/get-all-playlists 
+###
+GET http://localhost:3000/get-playlist?_id=625e5741a8af67231727ce49
+###
+PUT http://localhost:3000/add-image-in-playlist
+Content-Type: application/json
+
+{
+    "_id":"625e5741a8af67231727ce49",
+    "image":"image-uploads\\1650349172242.png"
+}
+###
+PUT http://localhost:3000/add-video-in-playlist
+Content-Type: application/json
+
+{
+    "_id":"625e5741a8af67231727ce49",
+    "video":"video-uploads\\1650349203820.mp4"
+}
+###
+DELETE http://localhost:3000/remove-image-from-playlist
+Content-Type: application/json
+
+{
+    "_id":"625e5741a8af67231727ce49",
+    "image":"image-uploads\\1650349172242.png"
+}
+###
+DELETE http://localhost:3000/remove-video-from-playlist
+Content-Type: application/json
+
+{
+    "_id":"625e5741a8af67231727ce49",
+    "video":"video-uploads\\1650349203820.mp4"
+}
+###
+POST http://localhost:3000/create-admin
+Content-Type: application/json
+
+{
+    "image":"image-uploads\\1650349172242.png",
+    "fullName":"name of admin",
+    "dob":"2022-04-19T06:38:16.403Z",
+    "jobTitle":"Job",
+    "email":"asd@asd.asd",
+    "password":"asd"
+}
+###
+DELETE http://localhost:3000/delete-admin
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd"
+}
+###
+GET http://localhost:3000/get-admin?email=asd@asd.asd
+###
+PUT http://localhost:3000/login-admin
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd",
+    "password":"asd"
+}
+###
+PUT http://localhost:3000/logout-admin
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd"
+}
+###
+PUT http://localhost:3000/update-admin-password
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd",
+    "password":"123"
+}
+###
+PUT http://localhost:3000/update-admin-profile
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd",
+    "image":"asd",
+    "fullName":"asd",
+    "dob":"2022-04-19T06:38:16.403Z",
+    "jobTitle":"asd"
+}
+###
+POST http://localhost:3000/create-user
+Content-Type: application/json
+
+{
+    "fullName":"asd",
+    "email":"asd@asd.asd",
+    "password":"asd"
+}
+###
+DELETE http://localhost:3000/delete-user
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd"
+}
+###
+GET http://localhost:3000/get-user?email=asd@asd.asd
+###
+PUT http://localhost:3000/login-user
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd",
+    "password":"asd"
+}
+###
+PUT http://localhost:3000/logout-user
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd"
+}
+###
+PUT http://localhost:3000/update-user-password
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd",
+    "password":"123"
+}
+###
+PUT http://localhost:3000/update-user-profile
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd",
+    "fullName":"asdasda"
+}
+
+###
+PUT http://localhost:3000/add-card
+Content-Type: application/json
+
+{
+    "email":"asd@asd.asd",
+    "cardNumber":"123",
+    "expiryMonth":"12",
+    "expiryYear":"12",
+    "securityCode":"123",
+    "firstName":"asd",
+    "lastName":"asd"
+}
+###
+POST http://localhost:3000/create-subscription
+Content-Type: application/json
+
+{
+    "_id":"625e5a541db9364fc3e8bbc7",
+    "topic":"625e56e03b0aaabe618629b9",
+    "subscriptionTenure":{
+        "tenureType":"Monthly",
+        "startDate":"2022-04-19T06:38:16.403Z",
+        "endDate":"2022-04-19T06:38:16.403Z"
+    },
+    "totalPrice":"1234",
+    "cardDetails":{
+        "cardNumber":"4242424242424242",
+        "expiryMonth":"04",
+        "expiryYear":"24",
+        "cvc":"123"
+    }
+}
+###
+DELETE  http://localhost:3000/delete-subscription
+Content-Type: application/json
+
+{
+    "_id":"625e5bc8ac59f2acc0af5186",
+    "user_id":"625e5a541db9364fc3e8bbc7"
+}
+###
+GET http://localhost:3000/get-all-subscriptions
+###
+GET http://localhost:3000/get-user-subscriptions?_id=625e5a541db9364fc3e8bbc7
+###
+PUT http://localhost:3000/update-subscription
+Content-Type: application/json
+
+{
+    "_id":"625e5c666144e8bef8e6adf7",
+    "topic":"625e56e03b0aaabe618629b9",
+    "subscriptionTenure":{
+        "tenureType":"Daily",
+        "startDate":"2022-04-19T06:38:16.403Z",
+        "endDate":"2022-04-19T06:38:16.403Z"
+    },
+    "totalPrice":"1234"
+}
