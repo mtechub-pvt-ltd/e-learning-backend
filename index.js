@@ -24,6 +24,7 @@ const CreatePlaylist = require('./apis/admin/playlist/create-playlist')
 const DeletePlaylist = require('./apis/admin/playlist/delete-playlist')
 const GetAllPlaylists = require('./apis/admin/playlist/get-all-playlists')
 const GetPlaylist = require('./apis/admin/playlist/get-playlist')
+const GetTopicPlaylists = require('./apis/admin/playlist/get-topic-playlists')
 const RemoveImageFromPlaylist = require('./apis/admin/playlist/remove-image-from-playlist')
 const RemoveVideoFromPlaylist = require('./apis/admin/playlist/remove-video-from-playlist')
 
@@ -79,6 +80,7 @@ app.use('/create-playlist', CreatePlaylist)                         // checked
 app.use('/delete-playlist', DeletePlaylist)                         // checked
 app.use('/get-all-playlists', GetAllPlaylists)                      // checked
 app.use('/get-playlist', GetPlaylist)                               // checked
+app.use('/get-topic-playlists', GetTopicPlaylists)
 app.use('/remove-image-from-playlist', RemoveImageFromPlaylist)     // checked
 app.use('/remove-video-from-playlist', RemoveVideoFromPlaylist)     // checked
 
