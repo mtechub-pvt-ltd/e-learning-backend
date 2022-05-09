@@ -60,6 +60,7 @@ const userProfileSchema = mongoose.Schema({
 })
 
 const videoSchema = mongoose.Schema({
+    title: String,
     path: String,
     duration: String
 })

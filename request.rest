@@ -14,14 +14,17 @@ Content-Type: application/json
     "description": "Some Description for the playlist",
     "videos":[
         {
+            "title":"Title 1",
             "path": "video-uploads\\1652079008111.mp4",
             "duration": "0:4"
         },
         {
+            "title":"Title 2",
             "path": "video-uploads\\1652079008111.mp4",
             "duration": "0:4"
         },
         {
+            "title":"Title 3",
             "path": "video-uploads\\1652079008111.mp4",
             "duration": "0:4"
         }
@@ -52,9 +55,9 @@ Content-Type: application/json
 GET http://localhost:3000/get-all-topics 
 
 ###
-GET http://localhost:3000/get-topic?_id=625e55db14ba331cd79ef7a4
+GET http://localhost:3000/get-topic?_id=6278ba41fd0c3e1a5996902b
 ###
-GET http://localhost:3000/get-topic-playlists?_id=625fe49d5a6636a5b9afde08
+GET http://localhost:3000/get-topic-playlists?_id=6278ba41fd0c3e1a5996902b
 ###
 PUT http://localhost:3000/update-topic
 Content-Type: application/json
@@ -87,7 +90,7 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/get-all-playlists 
 ###
-GET http://localhost:3000/get-playlist?_id=625fe4df5a6636a5b9afde0c
+GET http://localhost:3000/get-playlist?_id=6278ba86f6c99b2d51d9a568
 ###
 PUT http://localhost:3000/add-image-in-playlist
 Content-Type: application/json

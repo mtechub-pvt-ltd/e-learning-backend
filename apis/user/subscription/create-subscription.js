@@ -27,6 +27,10 @@ const CreateSubscription = app.post('/', async (req, res) => {
                 priceForTenure = result.price
             } else if (req.body.subscriptionTenure.tenureType == 'Monthly') {
                 priceForTenure = result.price * 30
+            } else if (req.body.subscriptionTenure.tenureType == 'Monthly') {
+                priceForTenure = result.price * 30
+            } else if (req.body.subscriptionTenure.tenureType == 'Quarterly') {
+                priceForTenure = result.price * 90
             } else if (req.body.subscriptionTenure.tenureType == 'Yearly') {
                 priceForTenure = result.price * 365
             } else {
@@ -51,7 +55,7 @@ const CreateSubscription = app.post('/', async (req, res) => {
         amount: priceForTenure,
         currency: 'usd',
         source: token.id,
-        description: 'Some Description For The Transaction',
+        description: 'Test Transaction',
     }).then((charge) => {
         const subscriptionObject = new subscriptionSchema({
             subNo: subNo,
