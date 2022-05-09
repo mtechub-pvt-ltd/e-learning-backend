@@ -8,11 +8,37 @@ const stripe = require('stripe')(process.env.SECRET_STRIPE_KEY)
 
 const subscriptionSchema = mongoose.model('subscriptionSchema', schemas.subscriptionSchema, 'subscriptions')
 const userProfileSchema = mongoose.model('userProfileSchema', schemas.userProfileSchema, 'users')
+const topicSchema = mongoose.model('topicSchema', schemas.topicSchema, 'topics')
 
 const CreateSubscription = app.post('/', async (req, res) => {
     const options = {
         new: true
     }
+    let priceForTenure = 0
+    const subNo = Math.floor(100000 + Math.random() * 900000)
+    // const data = req.body
+    // console.log(req.body)
+    topicSchema.findById(req.body.topic, (error, result) => {
+        if (error) {
+            res.send(error)
+        } else {
+            // res.send(result)
+            if (req.body.subscriptionTenure.tenureType == 'Daily') {
+                priceForTenure = result.price
+            } else if (req.body.subscriptionTenure.tenureType == 'Monthly') {
+                priceForTenure = result.price * 30
+            } else if (req.body.subscriptionTenure.tenureType == 'Yearly') {
+                priceForTenure = result.price * 365
+            } else {
+                res.status(403).send('Wrong Subscription Tenure Selected')
+                return
+            }
+            // res.send({
+            //     ...data,
+            //     totalPrice: priceForTenure
+            // })
+        }
+    })
     const token = await stripe.tokens.create({
         card: {
             number: req.body.cardDetails.cardNumber,
@@ -22,15 +48,16 @@ const CreateSubscription = app.post('/', async (req, res) => {
         },
     })
     stripe.charges.create({
-        amount: req.body.totalPrice,
+        amount: priceForTenure,
         currency: 'usd',
         source: token.id,
         description: 'Some Description For The Transaction',
     }).then((charge) => {
         const subscriptionObject = new subscriptionSchema({
+            subNo: subNo,
             topic: req.body.topic,
             subscriptionTenure: req.body.subscriptionTenure,
-            totalPrice: req.body.totalPrice,
+            totalPrice: priceForTenure,
             stripeData: charge
         })
         subscriptionObject.save((error, result) => {
@@ -46,7 +73,12 @@ const CreateSubscription = app.post('/', async (req, res) => {
                     if (error) {
                         res.send(error)
                     } else {
-                        res.send(result)
+                        if (result) {
+                            res.send(`You've been successfully subscribed`)
+                            // res.send(result)
+                        } else {
+                            res.status(404).send('User not found')
+                        }
                     }
                 })
             }

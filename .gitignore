@@ -1,7 +1,7 @@
 # node.js
 #
 node_modules/
-image-uploads/
-video-uploads/
+# image-uploads/
+# video-uploads/
 npm-debug.log
 yarn-error.log

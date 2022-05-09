@@ -13,16 +13,25 @@ Content-Type: application/json
     "name":"Some New Playlist",
     "description": "Some Description for the playlist",
     "videos":[
-        "video-uploads\\1650349203820.mp4",
-        "video-uploads\\1650349203820.mp4",
-        "video-uploads\\1650349203820.mp4"
+        {
+            "path": "video-uploads\\1652079008111.mp4",
+            "duration": "0:4"
+        },
+        {
+            "path": "video-uploads\\1652079008111.mp4",
+            "duration": "0:4"
+        },
+        {
+            "path": "video-uploads\\1652079008111.mp4",
+            "duration": "0:4"
+        }
     ],
     "images":[
-        "image-uploads\\1650349172242.png",
-        "image-uploads\\1650349172242.png",
-        "image-uploads\\1650349172242.png"
+        "image-uploads\\1652079089867.png",
+        "image-uploads\\1652079089867.png",
+        "image-uploads\\1652079089867.png"
     ],
-    "topic":"625fe49d5a6636a5b9afde08"
+    "topic":"6278ba41fd0c3e1a5996902b"
 }
 ###
 POST http://localhost:3000/create-topic
@@ -32,11 +41,11 @@ Content-Type: application/json
     "name":"Some New Topic",
     "description": "Some Description for the topic",
     "images":[
-        "image-uploads\\1650349172242.png",
-        "image-uploads\\1650349172242.png",
-        "image-uploads\\1650349172242.png"
+        "image-uploads\\1652079089867.png",
+        "image-uploads\\1652079089867.png",
+        "image-uploads\\1652079089867.png"
     ],
-    "price":"500"
+    "price":"50"
 }
 
 ###
@@ -78,22 +87,25 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/get-all-playlists 
 ###
-GET http://localhost:3000/get-playlist?_id=625e5741a8af67231727ce49
+GET http://localhost:3000/get-playlist?_id=625fe4df5a6636a5b9afde0c
 ###
 PUT http://localhost:3000/add-image-in-playlist
 Content-Type: application/json
 
 {
-    "_id":"625e5741a8af67231727ce49",
-    "image":"image-uploads\\1650349172242.png"
+    "_id":"6278ba86f6c99b2d51d9a568",
+    "image":"image-uploads\\1652079089867.png"
 }
 ###
 PUT http://localhost:3000/add-video-in-playlist
 Content-Type: application/json
 
 {
-    "_id":"625e5741a8af67231727ce49",
-    "video":"video-uploads\\1650349203820.mp4"
+    "_id":"6278ba86f6c99b2d51d9a568",
+    "video": {
+        "path": "video-uploads\\1652079008111.mp4",
+        "duration": "0:4"
+    }
 }
 ###
 DELETE http://localhost:3000/remove-image-from-playlist
@@ -212,8 +224,10 @@ PUT http://localhost:3000/update-user-profile
 Content-Type: application/json
 
 {
-    "email":"asd@asd.asd",
-    "fullName":"asdasda"
+    "email":"zouqe42@gmail.com",
+    "fullName":"asdasda",
+    "dob":"2022-05-09T06:11:53.295Z",
+    "address":"dhok khabba"
 }
 
 ###
@@ -234,14 +248,14 @@ POST http://localhost:3000/create-subscription
 Content-Type: application/json
 
 {
-    "_id":"625e5a541db9364fc3e8bbc7",
-    "topic":"625e56e03b0aaabe618629b9",
+    "_id":"625fce304e1ce5cce21d2ee6",
+    "topic":"625fe49d5a6636a5b9afde08",
     "subscriptionTenure":{
-        "tenureType":"Monthly",
+        "tenureType":"Daily",
         "startDate":"2022-04-19T06:38:16.403Z",
         "endDate":"2022-04-19T06:38:16.403Z"
     },
-    "totalPrice":"1234",
+    # "totalPrice":"432",
     "cardDetails":{
         "cardNumber":"4242424242424242",
         "expiryMonth":"04",
@@ -249,6 +263,7 @@ Content-Type: application/json
         "cvc":"123"
     }
 }
+
 ###
 DELETE  http://localhost:3000/delete-subscription
 Content-Type: application/json
@@ -260,7 +275,7 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/get-all-subscriptions
 ###
-GET http://localhost:3000/get-user-subscriptions?_id=625e5a541db9364fc3e8bbc7
+GET http://localhost:3000/get-user-subscriptions?_id=625fce304e1ce5cce21d2ee6
 ###
 PUT http://localhost:3000/update-subscription
 Content-Type: application/json

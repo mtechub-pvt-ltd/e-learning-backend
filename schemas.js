@@ -17,8 +17,6 @@ const paymentDetailSchema = mongoose.Schema({
     cvc: Number
 })
 
-
-
 const topicSchema = mongoose.Schema({
     name: String,
     description: String,
@@ -34,19 +32,26 @@ const subscriptionTenureSchema = mongoose.Schema({
 
 
 const subscriptionSchema = mongoose.Schema({
-    topic: mongoose.Types.ObjectId,
+    subNo: Number,
+    topic: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'topics'
+    },
     subscriptionTenure: subscriptionTenureSchema,
     totalPrice: Number,
     stripeData: mongoose.Schema.Types.Mixed
 })
 
 const subscriptionModel = mongoose.model('subscriptions', subscriptionSchema)
+const topicsModel = mongoose.model('topics', topicSchema)
 
 const userProfileSchema = mongoose.Schema({
     fullName: String,
     email: String,
     password: String,
     session: String,
+    dob: Date,
+    address: String,
     paymentDetails: [paymentDetailSchema],
     subscriptions: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -54,10 +59,15 @@ const userProfileSchema = mongoose.Schema({
     }]
 })
 
+const videoSchema = mongoose.Schema({
+    path: String,
+    duration: String
+})
+
 const playlistSchema = mongoose.Schema({
     name: String,
     description: String,
-    videos: [String],
+    videos: [videoSchema],
     images: [String],
     topic: mongoose.Types.ObjectId,
 })

@@ -9,7 +9,7 @@ const playlistSchema = mongoose.model('playlistSchema', schemas.playlistSchema, 
 const RemoveVideoFromPlaylist = app.delete('/', (req, res) => {
     const updateData = {
         $pull: {
-            videos: req.body.video      // path of video
+            videos: req.body.video      // path and duration of video, js object
         }
     }
     const options = {

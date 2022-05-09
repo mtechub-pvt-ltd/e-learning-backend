@@ -13,7 +13,9 @@ const CreateUserProfile = app.post('/', (req, res) => {
         fullName: req.body.fullName,
         email: req.body.email,
         password: hashedPassword,
-        session: session
+        session: session,
+        dob: null,
+        address: null
     })
 
     user.save((error, result) => {

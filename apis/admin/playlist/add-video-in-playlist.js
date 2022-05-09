@@ -9,7 +9,7 @@ const playlistSchema = mongoose.model('playlistSchema', schemas.playlistSchema, 
 const AddVideoInPlaylist = app.put('/', (req, res) => {
     const updateData = {
         $push: {
-            videos: req.body.video      // path of video
+            videos: req.body.video      // path and duration of video, js object
         }
     }
     const options = {
