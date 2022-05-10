@@ -14,9 +14,18 @@ const GetUserSubscriptions = app.get('/', (req, res) => {
         } else {
             res.send(result)
         }
-    }).populate({
-        path: 'subscriptions',
-        select: [ 'totalPrice', 'subNo']
-    }).select('subscriptions')
+    })
+        .select('subscriptions')
+        .populate({
+            path: 'subscriptions',
+            populate:
+                [{
+                    path: 'playlist'
+                }, {
+                    path: 'topic'
+                },
+                ],
+            select: ['totalPrice', 'subNo', 'topic', 'subscriptionTenure', 'playlist']
+        })
 })
 module.exports = GetUserSubscriptions

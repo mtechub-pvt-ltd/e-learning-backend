@@ -25,7 +25,7 @@ const topicSchema = mongoose.Schema({
 })
 
 const subscriptionTenureSchema = mongoose.Schema({
-    tenureType: { type: String, enum: ['Daily', 'Monthly', 'Yearly'] },
+    tenureType: { type: String, enum: ['Daily', 'Monthly', 'Quarterly', 'Yearly'] },
     startDate: Date,
     endDate: Date,
 })
@@ -37,6 +37,10 @@ const subscriptionSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'topics'
     },
+    playlist: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'playlists'
+    },
     subscriptionTenure: subscriptionTenureSchema,
     totalPrice: Number,
     stripeData: mongoose.Schema.Types.Mixed
@@ -46,6 +50,7 @@ const subscriptionModel = mongoose.model('subscriptions', subscriptionSchema)
 const topicsModel = mongoose.model('topics', topicSchema)
 
 const userProfileSchema = mongoose.Schema({
+    image: String,
     fullName: String,
     email: String,
     password: String,
@@ -70,8 +75,12 @@ const playlistSchema = mongoose.Schema({
     description: String,
     videos: [videoSchema],
     images: [String],
-    topic: mongoose.Types.ObjectId,
+    topic: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'topics'
+    },
 })
+const playlistModel = mongoose.model('playlists', playlistSchema)
 
 module.exports = {
     adminProfileSchema,

@@ -278,7 +278,7 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/get-all-subscriptions
 ###
-GET http://localhost:3000/get-user-subscriptions?_id=625fce304e1ce5cce21d2ee6
+GET http://localhost:3000/get-user-subscriptions?_id=627a09b03a9ae7827aee8755
 ###
 PUT http://localhost:3000/update-subscription
 Content-Type: application/json

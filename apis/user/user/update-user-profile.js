@@ -11,6 +11,7 @@ const UpdateUserProfile = app.put('/', (req, res) => {
         email: req.body.email
     }
     const updateData = {
+        image: req.body.image,
         fullName: req.body.fullName,
         dob: req.body.dob,
         address: req.body.address

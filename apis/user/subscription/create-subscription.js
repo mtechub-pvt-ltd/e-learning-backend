@@ -55,14 +55,15 @@ const CreateSubscription = app.post('/', async (req, res) => {
         amount: priceForTenure,
         currency: 'usd',
         source: token.id,
-        description: 'Test Transaction',
+        description: req.body.description,
     }).then((charge) => {
         const subscriptionObject = new subscriptionSchema({
             subNo: subNo,
             topic: req.body.topic,
+            playlist: req.body.playlist,
             subscriptionTenure: req.body.subscriptionTenure,
             totalPrice: priceForTenure,
-            stripeData: charge
+            stripeData: charge,
         })
         subscriptionObject.save((error, result) => {
             if (error) {

@@ -7,6 +7,7 @@ app.use(express.json())
 app.use(express.urlencoded())
 app.use(cors())
 app.use('/image-uploads', express.static('image-uploads'))
+app.use('/video-uploads', express.static('video-uploads'))
 app.get('/', (req, res) => {
     res.send('Working')
 })

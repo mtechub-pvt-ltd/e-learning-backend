@@ -13,6 +13,6 @@ const GetAllPlaylists = app.get('/', (req, res) => {
         } else {
             res.send(result)
         }
-    })
+    }).populate('topic')
 })
 module.exports = GetAllPlaylists
