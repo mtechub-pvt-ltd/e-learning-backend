@@ -251,8 +251,9 @@ POST http://localhost:3000/create-subscription
 Content-Type: application/json
 
 {
-    "_id":"625fce304e1ce5cce21d2ee6",
-    "topic":"625fe49d5a6636a5b9afde08",
+    "_id":"6278ba1c9992fe8a40b3ff4e",
+    "topic":"6278ba41fd0c3e1a5996902b",
+    "playlist":"6278ba41fd0c3e1a5996902b",
     "subscriptionTenure":{
         "tenureType":"Daily",
         "startDate":"2022-04-19T06:38:16.403Z",

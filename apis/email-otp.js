@@ -5,14 +5,14 @@ const nodemailer = require('nodemailer')
 const SendOtpEmail = app.post('/', (req, res) => {
     const otpCode = Math.floor(1000 + Math.random() * 9000)
     const transporter = nodemailer.createTransport({
-        service: 'yahoo',
+        service: 'gmail',
         auth: {
-            user: '',
-            pass: ''
+            user: 'appelearning89@gmail.com',
+            pass: 'appelearning89appelearning89'
         }
     })
     const mailOptions = {
-        from: '',
+        from: 'appelearning89@gmail.com',
         to: req.body.email,
         subject: `E-Learning`,
         text: `

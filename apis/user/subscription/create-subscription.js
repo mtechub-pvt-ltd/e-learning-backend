@@ -43,55 +43,67 @@ const CreateSubscription = app.post('/', async (req, res) => {
             // })
         }
     })
-    const token = await stripe.tokens.create({
-        card: {
-            number: req.body.cardDetails.cardNumber,
-            exp_month: req.body.cardDetails.expiryMonth,
-            exp_year: req.body.cardDetails.expiryYear,
-            cvc: req.body.cardDetails.cvc,
-        },
-    })
-    stripe.charges.create({
-        amount: priceForTenure,
-        currency: 'usd',
-        source: token.id,
-        description: req.body.description,
-    }).then((charge) => {
-        const subscriptionObject = new subscriptionSchema({
-            subNo: subNo,
-            topic: req.body.topic,
-            playlist: req.body.playlist,
-            subscriptionTenure: req.body.subscriptionTenure,
-            totalPrice: priceForTenure,
-            stripeData: charge,
+    try {
+        const token = await stripe.tokens.create({
+            card: {
+                number: req.body.cardDetails.cardNumber,
+                exp_month: req.body.cardDetails.expiryMonth,
+                exp_year: req.body.cardDetails.expiryYear,
+                cvc: req.body.cardDetails.cvc,
+            },
         })
-        subscriptionObject.save((error, result) => {
-            if (error) {
-                res.send(error)
-            } else {
-                const pushSubscription = {
-                    $push: {
-                        subscriptions: result._id
-                    }
-                }
-                userProfileSchema.findByIdAndUpdate(req.body._id, pushSubscription, options, (error, result) => {
-                    if (error) {
-                        res.send(error)
-                    } else {
-                        if (result) {
-                            res.send(`You've been successfully subscribed`)
-                            // res.send(result)
-                        } else {
-                            res.status(404).send('User not found')
+        stripe.charges.create({
+            amount: priceForTenure,
+            currency: 'usd',
+            source: token.id,
+            description: req.body.description,
+        }).then((charge) => {
+            const subscriptionObject = new subscriptionSchema({
+                subNo: subNo,
+                topic: req.body.topic,
+                playlist: req.body.playlist,
+                subscriptionTenure: req.body.subscriptionTenure,
+                totalPrice: priceForTenure,
+                stripeData: charge,
+            })
+            subscriptionObject.save((error, result) => {
+                if (error) {
+                    res.send(error)
+                } else {
+                    const pushSubscription = {
+                        $push: {
+                            subscriptions: result._id
                         }
                     }
-                })
-            }
+                    userProfileSchema.findByIdAndUpdate(req.body._id, pushSubscription, options, (error, result) => {
+                        if (error) {
+                            res.send(error)
+                        } else {
+                            if (result) {
+                                res.send(`You've been successfully subscribed`)
+                                // res.send(result)
+                            } else {
+                                res.status(404).send('User not found')
+                            }
+                        }
+                    })
+                }
+            })
+        }).catch(error => {
+            // res.status(500).send('Transaction failed, try some other time.')
+            res.status(error.statusCode).send({
+                type: error.type,
+                message: error.raw.message,
+                statusCode: error.statusCode
+            })
         })
-    }).catch(error => {
-        // res.status(500).send(error)
-        res.status(500).send('Transaction failed, try some other time.')
-    })
+    } catch (error) {
+        res.status(error.statusCode).send({
+            type: error.type,
+            message: error.raw.message,
+            statusCode: error.statusCode
+        })
+    }
 
 })
 module.exports = CreateSubscription
