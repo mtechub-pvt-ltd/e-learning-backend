@@ -267,7 +267,8 @@ Content-Type: application/json
         "cvc":"123"
     }
 }
-
+###
+GET http://localhost:3000/get-earnings?startDate=2022-04-18T06:38:16.403Z&endDate=2022-05-19T06:38:16.403Z
 ###
 DELETE  http://localhost:3000/delete-subscription
 Content-Type: application/json

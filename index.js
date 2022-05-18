@@ -43,6 +43,8 @@ const LogoutAdminProfile = require('./apis/admin/user/logout-admin')
 const UpdateAdminPassword = require('./apis/admin/user/update-admin-password')
 const UpdateAdminProfile = require('./apis/admin/user/update-admin-profile')
 
+const GetEarnings = require('./apis/admin/get-earnings')
+
 
 // User Imports
 const CreateSubscription = require('./apis/user/subscription/create-subscription')
@@ -98,6 +100,8 @@ app.use('/login-admin', LoginAdminProfile)                          // checked
 app.use('/logout-admin', LogoutAdminProfile)                        // checked
 app.use('/update-admin-password', UpdateAdminPassword)              // checked
 app.use('/update-admin-profile', UpdateAdminProfile)                // checked
+
+app.use('/get-earnings', GetEarnings)
 
 
 // User API End Points
