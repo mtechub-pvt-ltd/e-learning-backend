@@ -46,8 +46,7 @@ const subscriptionSchema = mongoose.Schema({
     stripeData: mongoose.Schema.Types.Mixed
 })
 
-const subscriptionModel = mongoose.model('subscriptions', subscriptionSchema)
-const topicsModel = mongoose.model('topics', topicSchema)
+
 
 const userProfileSchema = mongoose.Schema({
     image: String,
@@ -70,6 +69,24 @@ const videoSchema = mongoose.Schema({
     duration: String
 })
 
+const reviewSchema = mongoose.Schema({
+    playlist_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'playlists'
+    },
+    image: String,
+    review: String,
+})
+
+const ratingSchema = mongoose.Schema({
+    playlist_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'playlists'
+    },
+    stars: Number,
+    comments: String,
+})
+
 const playlistSchema = mongoose.Schema({
     name: String,
     description: String,
@@ -81,6 +98,10 @@ const playlistSchema = mongoose.Schema({
     },
 })
 const playlistModel = mongoose.model('playlists', playlistSchema)
+const subscriptionModel = mongoose.model('subscriptions', subscriptionSchema)
+const topicsModel = mongoose.model('topics', topicSchema)
+const ratingModel = mongoose.model('ratings', ratingSchema, 'ratings')
+const reviewModel = mongoose.model('reviews', reviewSchema, 'reviews')
 
 module.exports = {
     adminProfileSchema,
@@ -89,4 +110,6 @@ module.exports = {
     topicSchema,
     subscriptionSchema,
     playlistSchema,
+    ratingModel,
+    reviewModel,
 }
