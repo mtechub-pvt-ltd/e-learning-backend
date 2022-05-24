@@ -121,6 +121,20 @@ app.use('/update-user-profile', UpdateUserProfile)                  // checked
 
 app.use('/add-card', AddCard)                                       // checked
 
+app.use('/create-rating', require('./apis/user/ratings/create-rating'))
+app.use('/delete-rating', require('./apis/user/ratings/delete-rating'))
+app.use('/get-all-ratings', require('./apis/user/ratings/get-all-ratings'))
+app.use('/get-playlist-ratings', require('./apis/user/ratings/get-playlist-ratings'))
+app.use('/get-rating', require('./apis/user/ratings/get-rating'))
+app.use('/update-rating', require('./apis/user/ratings/update-rating'))
+
+app.use('/create-review', require('./apis/user/reviews/create-review'))
+app.use('/delete-review', require('./apis/user/reviews/delete-review'))
+app.use('/get-all-reviews', require('./apis/user/reviews/get-all-reviews'))
+app.use('/get-playlist-reviews', require('./apis/user/reviews/get-playlist-reviews'))
+app.use('/get-review', require('./apis/user/reviews/get-review'))
+app.use('/update-review', require('./apis/user/reviews/update-review'))
+
 
 
 app.listen(PORT, () => {
