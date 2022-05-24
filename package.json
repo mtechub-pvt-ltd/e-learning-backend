@@ -17,6 +17,7 @@
     "get-video-duration": "^4.0.0",
     "mongoose": "^6.3.0",
     "multer": "^1.4.4",
+    "ngrok": "^4.3.1",
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
     "stripe": "^8.218.0"
